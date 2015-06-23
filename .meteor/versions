@@ -1,4 +1,7 @@
 angular:angular@1.4.1
+angular:angular-animate@1.4.1
+angular:angular-aria@1.4.1
+angular:angular-material@0.10.0
 autopublish@1.0.3
 autoupdate@1.2.1
 base64@1.0.3
