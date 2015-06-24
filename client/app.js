@@ -20,10 +20,10 @@ app.controller('AddressBookCtrl', function() {
 
 });
 
-app.config('$stateProvider', function($stateProvider) {
+app.config(['$stateProvider', function($stateProvider) {
     $stateProvider.state('addressbook', {
         url : '/addressbook/:userId',
         templateUrl: '/client/addressbook.ng.html',
         controller: 'AddressBookCtrl'
     });
-});
+}]);

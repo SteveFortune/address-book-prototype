@@ -28,7 +28,3 @@ Meteor.methods({
     }
 
 });
-
-Meteor.publish('users', function() {
-    return Users.find(); // @todo Where org id ?
-});
