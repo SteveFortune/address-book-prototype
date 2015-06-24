@@ -1,0 +1,26 @@
+
+<div ng-controller="AddressBookCtrl">
+    
+    <md-list>
+        <md-list-item class="md-2-line" ng-repeat="user in users">
+            <div class="md-list-item-text">
+                <h3>{{ user.firstName + ' ' + user.lastName }}</h3>
+            </div>
+        </md-list-item>
+    </md-list>
+
+    <md-divider></md-divider>
+
+    <form layout="column">
+        <md-input-container>
+            <label>First Name</label>
+            <input type="text" ng-model="newUser.firstName">
+        </md-input-container>
+        <md-input-container>
+            <label>Last Name</label>
+            <input type="text" ng-model="newUser.lastName">
+        </md-input-container>
+        <md-button ng-click="addUser()">New</md-button>
+    </form>
+
+</div>

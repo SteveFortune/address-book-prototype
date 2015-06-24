@@ -18,13 +18,14 @@ if (Meteor.isCordova) {
 
 app.controller('AddressBookCtrl', ['$scope', '$meteor', '$meteorUtils', function($scope, $meteor, $meteorUtils) {
 
-    var users = $meteorUtils.getCollectionByName('userData');
-
     $scope.newUser = {};
-    $scope.users = $meteor.collection(users);
+    $scope.users = $meteor.collection(Meteor.users);
 
     $scope.addUser = function() {
-        $scope.users.insert($scope.newUser);
+        console.log("Adding user:");
+        console.log($scope.newUser);
+        $scope.users.save($scope.newUser);
+        console.log($scope.users);
     };
 
 }]);
