@@ -22,7 +22,7 @@ app.controller('AddressBookCtrl', ['$scope', '$meteor', '$meteorUtils', function
     $scope.users = $meteor.collection(Meteor.users).subscribe('users');
 
     $scope.addUser = function() {
-        $scope.users.push($scope.newUser);
+        $scope.users.save($scope.newUser);
         $scope.newUser = {};
     };
 
