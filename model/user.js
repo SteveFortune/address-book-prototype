@@ -4,9 +4,9 @@ var Users = Meteor.users;
 
 Users.allow({
     insert: function(userId, post) {
+        console.log('Can we insert? Yes');
         return true; // @todo: Is user able to insert new users?
     },
-
     remove: function(userId, document) {
         return true; // @todo: Is user able to remove other users?
     },
