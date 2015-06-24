@@ -16,10 +16,14 @@ if (Meteor.isCordova) {
     angular.element(document).ready(boot);
 }
 
-app.controller('NewUserCtrl', ['$mdDialog', '$scope', function($mdDialog, $scope) {
+app.controller('NewUserCtrl', ['$mdDialog', '$scope', 'users', function($mdDialog, $scope, users) {
 
     $scope.newUser = {};
-    $scope.hide = function() {
+    $scope.register = function() {
+        users.save($scope.newUser);
+        $mdDialog.hide();
+    };
+    $scope.cancel = function() {
         $mdDialog.hide();
     };
 
@@ -35,9 +39,8 @@ app.controller('AddressBookCtrl', ['$scope', '$meteor', '$meteorUtils', '$mdDial
         $mdDialog.show({
             templateUrl: 'client/newUser.ng.html',
             controller: 'NewUserCtrl',
-            onComplete: function(scope) {
-                $scope.users.save(scope.newUser);
-                $scope.newUser = {};
+            locals: {
+                users: $scope.users
             }
         });
     };
