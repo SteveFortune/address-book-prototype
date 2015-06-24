@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('isa', [
+var app = angular.module('addressbook', [
     'angular-meteor',
     'ui.router',
     'ngMaterial'
@@ -23,7 +23,7 @@ app.controller('AddressBookCtrl', function() {
 app.config('$stateProvider', function($stateProvider) {
     $stateProvider.state('addressbook', {
         url : '/addressbook/:userId',
-        templateUrl: '/client/address-book.html',
+        templateUrl: '/client/addressbook.ng.html',
         controller: 'AddressBookCtrl'
     });
 });

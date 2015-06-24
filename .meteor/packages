@@ -8,3 +8,5 @@ meteor-platform
 autopublish
 urigo:angular
 angular:angular-material
+accounts-ui
+accounts-password
