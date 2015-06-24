@@ -16,9 +16,18 @@ if (Meteor.isCordova) {
     angular.element(document).ready(boot);
 }
 
-app.controller('AddressBookCtrl', function() {
+app.controller('AddressBookCtrl', ['$scope', '$meteor', '$meteorUtils', function($scope, $meteor, $meteorUtils) {
 
-});
+    var users = $meteorUtils.getCollectionByName('userData');
+
+    $scope.newUser = {};
+    $scope.users = $meteor.collection(users);
+
+    $scope.addUser = function() {
+        $scope.users.insert($scope.newUser);
+    };
+
+}]);
 
 app.config(['$stateProvider', function($stateProvider) {
     $stateProvider.state('addressbook', {
