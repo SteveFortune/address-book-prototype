@@ -4,7 +4,7 @@
         <md-button ng-click="cancel()" class="md-primary">
             Cancel
         </md-button>
-        <md-button ng-click="register()" class="md-primary">
+        <md-button ng-click="save()" class="md-primary">
             Register
         </md-button>
     </div>
@@ -13,19 +13,19 @@
         <form layout="column">
             <md-input-container>
                 <label>First Name</label>
-                <input type="text" ng-model="newUser.firstName"/>
+                <input type="text" ng-model="user.firstName"/>
             </md-input-container>
             <md-input-container>
                 <label>Last Name</label>
-                <input type="text" ng-model="newUser.lastName"/>
+                <input type="text" ng-model="user.lastName"/>
             </md-input-container>
             <md-input-container>
                 <label>Email</label>
-                <input type="text" ng-model="newUser.email"/>
+                <input type="text" ng-model="user.email"/>
             </md-input-container>
             <md-input-container>
                 <label>Password</label>
-                <input type="text" ng-model="newUser.password"/>
+                <input type="text" ng-model="user.password"/>
             </md-input-container>
         </form>
     </md-dialog-content>

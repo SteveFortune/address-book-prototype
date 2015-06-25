@@ -30,14 +30,32 @@
             </md-input-container>
 
             <label>Phone Numbers</label>
-            <md-list>
-                <md-list-item class="md-2-line" ng-repeat="user in user.phoneNumbers">
+
+            <md-grid-list md-cols="2" md-row-height="4:3">
+
+                <md-grid-tile md-colspan="1" ng-repeat-start="phoneNumber in user.phoneNumbers">
                     <md-input-container>
-                        <input type="text" ng-model="newUser.email"/>
+                        <label>Number</label>
+                        <input type="text" ng-model="phoneNumber.number"/>
                     </md-input-container>
-                </md-list-item>
-            </md-list>
+                </md-grid-tile>
+
+                <md-grid-tile md-colspan="1">
+                    <md-input-container>
+                        <label>Type</label>
+                        <input type="text" ng-model="phoneNumber.type"/>
+                    </md-input-container>
+                </md-grid-tile>
+
+                <div ng-repeat-end md-colspan="2"></div>
+
+            </md-grid-list>
+
+            <md-button ng-click="addPhoneNumber()">
+                New
+            </md-button>
 
         </form>
     </md-dialog-content>
+
 </md-dialog>

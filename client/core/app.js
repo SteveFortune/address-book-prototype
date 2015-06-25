@@ -18,7 +18,13 @@ if (Meteor.isCordova) {
 
 app.controller('UserCtrl', ['$mdDialog', '$scope', 'users', function($mdDialog, $scope, users) {
 
-    $scope.user = {};
+    $scope.user = {
+        phoneNumbers: []
+    };
+
+    $scope.addPhoneNumber = function() {
+        $scope.user.phoneNumbers.push({});
+    };
     $scope.save = function() {
         users.save($scope.user);
         $mdDialog.hide();

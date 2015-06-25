@@ -15,9 +15,9 @@
 
         <md-list>
             <md-list-item class="md-2-line" ng-repeat="user in users">
-                <div class="md-list-item-text">
+                <a class="md-list-item-text" ng-click="editUser(user)">
                     <h3>{{ user.firstName + ' ' + user.lastName }}</h3>
-                </div>
+                </a>
             </md-list-item>
         </md-list>
 
