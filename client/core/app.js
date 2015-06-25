@@ -28,6 +28,12 @@ app.controller('UserCtrl', ['$mdDialog', '$scope', '$meteor', function($mdDialog
         }
         $scope.user.phoneNumbers.push({});
     };
+    $scope.addCallTree = function() {
+        if (!$scope.user.callTree) {
+            $scope.user.callTree = [];
+        }
+        $scope.user.callTree.push({});
+    };
     $scope.save = function() {
         users.save($scope.user);
         $mdDialog.hide();
