@@ -1,7 +1,10 @@
 <md-dialog aria-label="New User" flex="50">
 
     <div class="md-actions">
-        <md-button ng-click="cancel()" class="md-primary">
+        <md-button ng-click="save()" ng-disabled="!userForm.$valid" class="md-primary pull-left">
+            Save
+        </md-button>
+        <md-button ng-click="cancel()" class="md-primary md-warn">
             Cancel
         </md-button>
     </div>
@@ -25,10 +28,6 @@
                 <label>Password</label>
                 <input type="text" ng-model="user.password" required="true"/>
             </md-input-container>
-
-            <md-button ng-click="save()" ng-disabled="!userForm.$valid" class="md-primary">
-                Register
-            </md-button>
 
         </form>
     </md-dialog-content>

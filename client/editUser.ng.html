@@ -1,7 +1,10 @@
 <md-dialog aria-label="Edit User" flex="50">
 
     <div class="md-actions">
-        <md-button ng-click="cancel()" class="md-primary">
+        <md-button ng-click="save()" ng-disabled="!userForm.$valid" class="md-primary pull-left">
+            Save
+        </md-button>
+        <md-button ng-click="cancel()" class="md-primary md-warn">
             Cancel
         </md-button>
     </div>
@@ -37,13 +40,11 @@
                     Add
                 </md-button>
             </md-header>
+            <md-subheader ng-if="!user.phoneNumbers.length">
+                <i>No phone numbers</i>
+            </md-subheader>
 
-            <md-grid-list md-cols="2" md-row-height="4:3">
-                <md-grid-row ng-if="!user.phoneNumbers.length">
-                    <md-subheader>
-                        <i>No phone numbers</i>
-                    </md-subheader>
-                </md-grid-row>
+            <md-grid-list md-cols="2" md-row-height="50px">
                 <md-grid-tile md-colspan="1" ng-repeat-start="phoneNumber in user.phoneNumbers">
                     <md-input-container>
                         <label>Number</label>
@@ -56,7 +57,7 @@
                         <input type="text" ng-model="phoneNumber.type" require="true"/>
                     </md-input-container>
                 </md-grid-tile>
-                <div ng-repeat-end md-colspan="2"></div>
+                <span ng-repeat-end></span>
             </md-grid-list>
 
             <md-header>
@@ -78,13 +79,11 @@
                     Add
                 </md-button>
             </md-header>
+            <md-subheader ng-if="!user.callTree.length">
+                <i>No phone numbers</i>
+            </md-subheader>
 
-            <md-grid-list md-cols="2" md-row-height="4:3">
-                <md-grid-row ng-if="!user.callTree.length">
-                    <md-subheader>
-                        <i>No call tree</i>
-                    </md-subheader>
-                </md-grid-row>
+            <md-grid-list md-cols="2" md-row-height="50px">
                 <md-grid-tile md-colspan="1" ng-repeat-start="contact in user.callTree">
                     <md-input-container>
                         <label>Name</label>
@@ -97,12 +96,8 @@
                         <input type="text" ng-model="contact.number" require="true"/>
                     </md-input-container>
                 </md-grid-tile>
-                <div ng-repeat-end md-colspan="2"></div>
+                <span ng-repeat-end></span>
             </md-grid-list>
-
-            <md-button ng-click="save()" ng-disabled="!userForm.$valid" class="md-primary">
-                Save
-            </md-button>
 
         </form>
 
