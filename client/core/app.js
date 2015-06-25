@@ -51,6 +51,7 @@ app.controller('AddressBookCtrl', ['$scope', '$meteor', '$mdDialog', function($s
 
     $scope.addUser = function() {
         $mdDialog.show({
+            parent: angular.element(document.body),
             templateUrl: 'client/newUser.ng.html',
             controller: 'UserCtrl'
         });
@@ -58,6 +59,7 @@ app.controller('AddressBookCtrl', ['$scope', '$meteor', '$mdDialog', function($s
 
     $scope.editUser = function(user) {
         $mdDialog.show({
+            parent: angular.element(document.body),
             templateUrl: 'client/editUser.ng.html',
             controller: 'UserCtrl',
             locals: {
