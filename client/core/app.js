@@ -19,16 +19,18 @@ if (Meteor.isCordova) {
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
         .state('addressbook', {
-            url: '/addresbook',
+            url: '/addressbook',
             templateUrl: 'client/addressBook.ng.html',
             controller: 'AddressBookCtrl'
         })
         .state('addressbook.user', {
-            url: '/addresbook/:userId',
+            url: '/:userId',
             templateUrl: 'client/viewUser.ng.html',
             resolve: {
                 user: ['$stateParams', function($stateParams) {
-                    return Meteor.users.findById($stateParams.userId);
+                    return Meteor.users.find({
+                        _id: $stateParams.userId
+                    });
                 }]
             },
             controller: 'UserCtrl'
@@ -39,8 +41,20 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
 app.controller('UserCtrl', ['$mdDialog', '$scope', '$meteor', 'user', function($mdDialog, $scope, $meteor, user) {
 
     var users = $meteor.collection(Meteor.users);
-    $scope.isNew = !$scope.user;
-    $scope.user = angular.copy($scope.user) || {};
+    $scope.user = user ? angular.copy(user) : {};
+
+    $scope.edit = function() {
+        $mdDialog.show({
+            parent: angular.element(document.body),
+            templateUrl: 'client/editUser.ng.html',
+            controller: 'UserCtrl',
+            resolve: {
+                user: function() {
+                    return $scope.user;
+                }
+            }
+        });
+    };
 
     $scope.addPhoneNumber = function() {
         if (!$scope.user.phoneNumbers) {
@@ -48,16 +62,19 @@ app.controller('UserCtrl', ['$mdDialog', '$scope', '$meteor', 'user', function($
         }
         $scope.user.phoneNumbers.push({});
     };
+
     $scope.addCallTree = function() {
         if (!$scope.user.callTree) {
             $scope.user.callTree = [];
         }
         $scope.user.callTree.push({});
     };
+
     $scope.save = function() {
         users.save($scope.user);
         $mdDialog.hide();
     };
+
     $scope.cancel = function() {
         $mdDialog.hide();
     };
@@ -76,19 +93,6 @@ app.controller('AddressBookCtrl', ['$scope', '$meteor', '$mdDialog', function($s
             controller: 'UserCtrl',
             resolve: {
                 user: angular.noop
-            }
-        });
-    };
-
-    $scope.editUser = function(user) {
-        $mdDialog.show({
-            parent: angular.element(document.body),
-            templateUrl: 'client/editUser.ng.html',
-            controller: 'UserCtrl',
-            resolve: {
-                user: function() {
-                    return user;
-                }
             }
         });
     };

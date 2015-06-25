@@ -30,8 +30,12 @@
         <md-content flex="fit">
             <md-list>
                 <md-list-item class="md-2-line" ng-repeat="user in users">
-                    <a class="md-list-item-text" ng-click="editUser(user)">
-                        <h3>{{ user.firstName + ' ' + user.lastName }}</h3>
+                    <a class="md-list-item-text" ui-sref="addressbook.user({
+                        userId: user._id
+                    })">
+                        <div>
+                            <h3>{{ user.firstName + ' ' + user.lastName }}</h3>
+                        </div>
                     </a>
                 </md-list-item>
             </md-list>
@@ -40,7 +44,7 @@
     </md-sidenav>
 
     <md-content flex="fit">
-        <ui-view></ui-view>
+        <div ui-view></div>
     </md-content>
 
 </div>

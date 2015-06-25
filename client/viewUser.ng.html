@@ -1,7 +1,7 @@
 <md-card layout-padding="30px">
 
     <div class="md-actions" layout="row" layout-align="end center">
-      <md-button>Edit</md-button>
+      <md-button ng-click="edit()">Edit</md-button>
     </div>
 
     <md-card-content>
@@ -41,9 +41,11 @@
         <md-header>
             Phone Numbers
         </md-header>
-        <md-subheader ng-if="!user.phoneNumbers.length">
-            <i>No phone numbers</i>
-        </md-subheader>
+        <div ng-if="!user.phoneNumbers.length">
+            <md-subheader>
+                <i>No phone numbers</i>
+            </md-subheader>
+        </div>
 
         <md-grid-list md-cols="2" md-row-height="50px">
             <md-grid-tile md-colspan="1" ng-repeat-start="phoneNumber in user.phoneNumbers">
@@ -65,9 +67,11 @@
         <md-header>
             Call Tree
         </md-header>
-        <md-subheader ng-if="!user.callTree.length">
-            <i>No call tree contacts</i>
-        </md-subheader>
+        <div ng-if="!user.callTree.length">
+            <md-subheader>
+                <i>No call tree contacts</i>
+            </md-subheader>
+        </div>
 
         <md-grid-list md-cols="2" md-row-height="50px">
             <md-grid-tile md-colspan="1" ng-repeat-start="contact in user.callTree">
