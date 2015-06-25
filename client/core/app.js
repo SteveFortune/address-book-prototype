@@ -16,13 +16,16 @@ if (Meteor.isCordova) {
     angular.element(document).ready(boot);
 }
 
-app.controller('UserCtrl', ['$mdDialog', '$scope', 'users', function($mdDialog, $scope, users) {
+app.controller('UserCtrl', ['$mdDialog', '$scope', '$meteor', 'user', function($mdDialog, $scope, $meteor, user) {
 
-    $scope.user = {
-        phoneNumbers: []
-    };
+    var users = $meteor.collection(Meteor.users);
+    $scope.isNew = !user;
+    $scope.user = angular.copy(user) || {};
 
     $scope.addPhoneNumber = function() {
+        if (!$scope.user.phoneNumbers) {
+            $scope.user.phoneNumbers = [];
+        }
         $scope.user.phoneNumbers.push({});
     };
     $scope.save = function() {
@@ -35,28 +38,24 @@ app.controller('UserCtrl', ['$mdDialog', '$scope', 'users', function($mdDialog, 
 
 }]);
 
-app.controller('AddressBookCtrl', ['$scope', '$meteor', '$meteorUtils', '$mdDialog', function($scope, $meteor, $meteorUtils, $mdDialog) {
+app.controller('AddressBookCtrl', ['$scope', '$meteor', '$mdDialog', function($scope, $meteor, $mdDialog) {
 
     $scope.selectStates = [ 'Users', 'Contacts', 'In call tree', 'Not in call tree' ];
-    $scope.user = {};
     $scope.users = $meteor.collection(Meteor.users).subscribe('users');
 
     $scope.addUser = function() {
         $mdDialog.show({
             templateUrl: 'client/newUser.ng.html',
-            controller: 'UserCtrl',
-            locals: {
-                users: $scope.users
-            }
+            controller: 'UserCtrl'
         });
     };
 
-    $scope.editUser = function() {
+    $scope.editUser = function(user) {
         $mdDialog.show({
             templateUrl: 'client/editUser.ng.html',
             controller: 'UserCtrl',
             locals: {
-                users: $scope.users
+                user: user
             }
         });
     };
