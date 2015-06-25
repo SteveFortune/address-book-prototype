@@ -1,0 +1,89 @@
+<md-card layout-padding="30px">
+
+    <div class="md-actions" layout="row" layout-align="end center">
+      <md-button>Edit</md-button>
+    </div>
+
+    <md-card-content>
+
+        <md-header>
+            First Name
+        </md-header>
+        <md-subheader>
+            {{ user.firstName }}
+        </md-subheader>
+        <md-divider></md-divider>
+
+        <md-header>
+            Last Name
+        </md-header>
+        <md-subheader>
+            {{ user.lastName }}
+        </md-subheader>
+        <md-divider></md-divider>
+
+        <md-header>
+            Type or Role
+        </md-header>
+        <md-subheader>
+            {{ user.role }}
+        </md-subheader>
+        <md-divider></md-divider>
+
+        <md-header>
+            Email
+        </md-header>
+        <md-subheader>
+            {{ user.email }}
+        </md-subheader>
+        <md-divider></md-divider>
+
+        <md-header>
+            Phone Numbers
+        </md-header>
+        <md-subheader ng-if="!user.phoneNumbers.length">
+            <i>No phone numbers</i>
+        </md-subheader>
+
+        <md-grid-list md-cols="2" md-row-height="50px">
+            <md-grid-tile md-colspan="1" ng-repeat-start="phoneNumber in user.phoneNumbers">
+                <md-subheader>
+                    <label>Number</label>
+                    {{ phoneNumber.number }}
+                </md-subheader>
+            </md-grid-tile>
+            <md-grid-tile md-colspan="1">
+                <md-subheader>
+                    <label>Type</label>
+                    {{ phoneNumber.type }}
+                </md-subheader>
+            </md-grid-tile>
+            <span ng-repeat-end></span>
+        </md-grid-list>
+        <md-divider></md-divider>
+
+        <md-header>
+            Call Tree
+        </md-header>
+        <md-subheader ng-if="!user.callTree.length">
+            <i>No call tree contacts</i>
+        </md-subheader>
+
+        <md-grid-list md-cols="2" md-row-height="50px">
+            <md-grid-tile md-colspan="1" ng-repeat-start="contact in user.callTree">
+                <md-subheader>
+                    <label>Name</label>
+                    {{ contact.name }}
+                </md-subheader>
+            </md-grid-tile>
+            <md-grid-tile md-colspan="1">
+                <md-subheader>
+                    <label>Number</label>
+                    {{ contact.number }}
+                </md-subheader>
+            </md-grid-tile>
+            <span ng-repeat-end></span>
+        </md-grid-list>
+    </md-card-content>
+
+</md-card>
