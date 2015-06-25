@@ -16,11 +16,11 @@ if (Meteor.isCordova) {
     angular.element(document).ready(boot);
 }
 
-app.controller('UserCtrl', ['$mdDialog', '$scope', '$meteor', 'user', function($mdDialog, $scope, $meteor, user) {
+app.controller('UserCtrl', ['$mdDialog', '$scope', '$meteor', function($mdDialog, $scope, $meteor) {
 
     var users = $meteor.collection(Meteor.users);
-    $scope.isNew = !user;
-    $scope.user = angular.copy(user) || {};
+    $scope.isNew = !$scope.user;
+    $scope.user = angular.copy($scope.user) || {};
 
     $scope.addPhoneNumber = function() {
         if (!$scope.user.phoneNumbers) {

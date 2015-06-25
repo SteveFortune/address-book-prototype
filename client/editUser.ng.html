@@ -4,46 +4,49 @@
         <md-button ng-click="cancel()" class="md-primary">
             Cancel
         </md-button>
-        <md-button ng-click="save()" class="md-primary">
-            Save
-        </md-button>
     </div>
 
     <md-dialog-content>
-        <form layout="column">
+
+        <form layout="column" name="userForm">
 
             <md-input-container>
                 <label>First Name</label>
-                <input type="text" ng-model="user.firstName"/>
+                <input type="text" ng-model="user.firstName" required="true"/>
             </md-input-container>
             <md-input-container>
                 <label>Last Name</label>
-                <input type="text" ng-model="user.lastName"/>
+                <input type="text" ng-model="user.lastName" required="true"/>
             </md-input-container>
             <md-input-container>
                 <label>Type or Role</label>
-                <input type="text" ng-model="user.role"/>
+                <input type="text" ng-model="user.role" required="true"/>
             </md-input-container>
             <md-input-container>
                 <label>Email</label>
-                <input type="text" ng-model="user.email"/>
+                <input type="email" ng-model="user.email" required="true"/>
             </md-input-container>
 
-            <label>Phone Numbers</label>
+            <md-subheader>
+                Phone Numbers
+                <md-button ng-click="addPhoneNumber()">
+                    Add
+                </md-button>
+            </md-subheader>
 
             <md-grid-list md-cols="2" md-row-height="4:3">
 
                 <md-grid-tile md-colspan="1" ng-repeat-start="phoneNumber in user.phoneNumbers">
                     <md-input-container>
                         <label>Number</label>
-                        <input type="text" ng-model="phoneNumber.number"/>
+                        <input type="text" ng-model="phoneNumber.number" require="true"/>
                     </md-input-container>
                 </md-grid-tile>
 
                 <md-grid-tile md-colspan="1">
                     <md-input-container>
                         <label>Type</label>
-                        <input type="text" ng-model="phoneNumber.type"/>
+                        <input type="text" ng-model="phoneNumber.type" require="true"/>
                     </md-input-container>
                 </md-grid-tile>
 
@@ -51,11 +54,12 @@
 
             </md-grid-list>
 
-            <md-button ng-click="addPhoneNumber()">
-                New
+            <md-button ng-click="save()" ng-disabled="!userForm.$valid" class="md-primary">
+                Save
             </md-button>
 
         </form>
+
     </md-dialog-content>
 
 </md-dialog>

@@ -4,29 +4,32 @@
         <md-button ng-click="cancel()" class="md-primary">
             Cancel
         </md-button>
-        <md-button ng-click="save()" class="md-primary">
-            Register
-        </md-button>
     </div>
 
     <md-dialog-content>
-        <form layout="column">
+        <form layout="column" name="userForm">
+
             <md-input-container>
                 <label>First Name</label>
-                <input type="text" ng-model="user.firstName"/>
+                <input type="text" ng-model="user.firstName" required="true"/>
             </md-input-container>
             <md-input-container>
                 <label>Last Name</label>
-                <input type="text" ng-model="user.lastName"/>
+                <input type="text" ng-model="user.lastName" required="true"/>
             </md-input-container>
             <md-input-container>
                 <label>Email</label>
-                <input type="text" ng-model="user.email"/>
+                <input type="email" ng-model="user.email" required="true"/>
             </md-input-container>
             <md-input-container>
                 <label>Password</label>
-                <input type="text" ng-model="user.password"/>
+                <input type="text" ng-model="user.password" required="true"/>
             </md-input-container>
+
+            <md-button ng-click="save()" ng-disabled="!userForm.$valid" class="md-primary">
+                Register
+            </md-button>
+
         </form>
     </md-dialog-content>
 
