@@ -16,11 +16,11 @@ if (Meteor.isCordova) {
     angular.element(document).ready(boot);
 }
 
-app.controller('NewUserCtrl', ['$mdDialog', '$scope', 'users', function($mdDialog, $scope, users) {
+app.controller('UserCtrl', ['$mdDialog', '$scope', 'users', function($mdDialog, $scope, users) {
 
-    $scope.newUser = {};
-    $scope.register = function() {
-        users.save($scope.newUser);
+    $scope.user = {};
+    $scope.save = function() {
+        users.save($scope.user);
         $mdDialog.hide();
     };
     $scope.cancel = function() {
@@ -32,13 +32,23 @@ app.controller('NewUserCtrl', ['$mdDialog', '$scope', 'users', function($mdDialo
 app.controller('AddressBookCtrl', ['$scope', '$meteor', '$meteorUtils', '$mdDialog', function($scope, $meteor, $meteorUtils, $mdDialog) {
 
     $scope.selectStates = [ 'Users', 'Contacts', 'In call tree', 'Not in call tree' ];
-    $scope.newUser = {};
+    $scope.user = {};
     $scope.users = $meteor.collection(Meteor.users).subscribe('users');
 
     $scope.addUser = function() {
         $mdDialog.show({
             templateUrl: 'client/newUser.ng.html',
-            controller: 'NewUserCtrl',
+            controller: 'UserCtrl',
+            locals: {
+                users: $scope.users
+            }
+        });
+    };
+
+    $scope.editUser = function() {
+        $mdDialog.show({
+            templateUrl: 'client/editUser.ng.html',
+            controller: 'UserCtrl',
             locals: {
                 users: $scope.users
             }
