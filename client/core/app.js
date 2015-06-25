@@ -16,7 +16,27 @@ if (Meteor.isCordova) {
     angular.element(document).ready(boot);
 }
 
-app.controller('UserCtrl', ['$mdDialog', '$scope', '$meteor', function($mdDialog, $scope, $meteor) {
+app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+    $stateProvider
+        .state('addressbook', {
+            url: '/addresbook',
+            templateUrl: 'client/addressBook.ng.html',
+            controller: 'AddressBookCtrl'
+        })
+        .state('addressbook.user', {
+            url: '/addresbook/:userId',
+            templateUrl: 'client/viewUser.ng.html',
+            resolve: {
+                user: ['$stateParams', function($stateParams) {
+                    return Meteor.users.findById($stateParams.userId);
+                }]
+            },
+            controller: 'UserCtrl'
+        });
+    $urlRouterProvider.otherwise('/addressbook');
+}]);
+
+app.controller('UserCtrl', ['$mdDialog', '$scope', '$meteor', 'user', function($mdDialog, $scope, $meteor, user) {
 
     var users = $meteor.collection(Meteor.users);
     $scope.isNew = !$scope.user;
@@ -53,7 +73,10 @@ app.controller('AddressBookCtrl', ['$scope', '$meteor', '$mdDialog', function($s
         $mdDialog.show({
             parent: angular.element(document.body),
             templateUrl: 'client/newUser.ng.html',
-            controller: 'UserCtrl'
+            controller: 'UserCtrl',
+            resolve: {
+                user: angular.noop
+            }
         });
     };
 
@@ -62,18 +85,12 @@ app.controller('AddressBookCtrl', ['$scope', '$meteor', '$mdDialog', function($s
             parent: angular.element(document.body),
             templateUrl: 'client/editUser.ng.html',
             controller: 'UserCtrl',
-            locals: {
-                user: user
+            resolve: {
+                user: function() {
+                    return user;
+                }
             }
         });
     };
 
-}]);
-
-app.config(['$stateProvider', function($stateProvider) {
-    $stateProvider.state('addressbook', {
-        url : '/addressbook/:userId',
-        templateUrl: '/client/addressbook.ng.html',
-        controller: 'AddressBookCtrl'
-    });
 }]);
