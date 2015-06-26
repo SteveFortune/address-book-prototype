@@ -29,7 +29,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
             resolve: {
                 user: ['$stateParams', '$meteor', function($stateParams, $meteor) {
                     var user = $meteor.object(Meteor.users, $stateParams.userId);
-                    return user.getRawObject();
+                    return user;
                 }]
             },
             controller: 'UserCtrl'
@@ -40,7 +40,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
 app.controller('UserCtrl', ['$mdDialog', '$scope', '$meteor', 'user', function($mdDialog, $scope, $meteor, user) {
 
     var users = $meteor.collection(Meteor.users);
-    $scope.user = user ? angular.copy(user) : {};
+    $scope.user = user || {};
 
     $scope.edit = function() {
         $mdDialog.show({
