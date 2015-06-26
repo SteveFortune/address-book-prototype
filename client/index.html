@@ -4,9 +4,12 @@
 </head>
 
 <body layout="column">
-    <md-toolbar layout-align="start center" layout-padding>
+    <!-- The `z-index` inline style is a rather nasty hack to get the
+         toolbar to render ontop of page content. In future, find out
+         how to do this properly with Flex. -->
+    <md-toolbar md-scroll-shrink layout="row" style="z-index:auto;" layout-align="start center" layout-padding>
         <div class="navbar-right navbar-text">
-          <meteor-include src="loginButtons"></meteor-include>
+            <meteor-include src="loginButtons"></meteor-include>
         </div>
     </md-toolbar>
     <div ui-view class="container-fluid"></div>

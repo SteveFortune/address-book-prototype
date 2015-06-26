@@ -17,10 +17,13 @@ if (Meteor.isCordova) {
 }
 
 app.run(['$rootScope', '$state', function($rootScope, $state) {
-    $rootScope.$on('$stateChangeError', function(event, next, previous, error) {
-        if (error === "AUTH_REQUIRED") {
-            event.preventDefault();
-            $state.go('login');
+    $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+        switch (error) {
+            case "AUTH_REQUIRED":
+            case "FORBIDDEN":
+            case "UNAUTHORIZED":
+                $state.go('login');
+                break;
         }
     });
 }]);
@@ -29,23 +32,28 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
     $stateProvider
         .state('login', {
             url: '/login',
-            templateUrl: 'client/login.ng.html',
-            controller: 'LoginCtrl'
+            templateUrl: 'client/login.ng.html'
         })
         .state('addressbook', {
             url: '/addressbook',
             templateUrl: 'client/addressBook.ng.html',
             controller: 'AddressBookCtrl',
             resolve: {
-                "identity": ["$meteor", function($meteor){
-                  return $meteor.requireUser();
+                identity: ["$meteor", function($meteor){
+                    return $meteor.requireUser();
                 }]
             }
         })
-        .state('addressbook.user', {
+        .state('user', {
             url: '/:userId',
+            parent: 'addressbook',
             templateUrl: 'client/viewUser.ng.html',
             resolve: {
+                /// @note Why should we have to do this? This should inherit and we should trigger
+                /// it to be resolved regardless of whether the routes are nested..
+                identity: ["$meteor", function($meteor){
+                    return $meteor.requireUser();
+                }],
                 user: ['$stateParams', '$meteor', function($stateParams, $meteor) {
                     var user = $meteor.object(Meteor.users, $stateParams.userId, false);
                     return user;
@@ -55,8 +63,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
         });
     $urlRouterProvider.otherwise('/addressbook');
 }]);
-
-app.controller('LoginCtrl', [function() {}]);
 
 app.controller('UserCtrl', ['$mdDialog', '$scope', '$meteor', 'user', function($mdDialog, $scope, $meteor, user) {
 
