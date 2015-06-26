@@ -40,6 +40,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
 app.controller('UserCtrl', ['$mdDialog', '$scope', '$meteor', 'user', function($mdDialog, $scope, $meteor, user) {
 
     var users = $meteor.collection(Meteor.users);
+
     $scope.user = user || {};
 
     $scope.edit = function() {

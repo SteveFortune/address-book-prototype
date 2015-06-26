@@ -7,9 +7,7 @@ Testing out these candidate technologies for Isometrica.
 - Simplified 'address book' version
 - Create users _DONE_
 - Edit users _DONE_
-- List and search users _IN PROGRESS_
-    - Search functionality
-    - Pagination
+- List and search users _DONE_
 - View individual users _DONE_
 - Use meteor backend _IN PROGRESS_
     - Authentication ?
