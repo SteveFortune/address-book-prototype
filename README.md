@@ -11,7 +11,7 @@ Testing out these candidate technologies for Isometrica.
 - View individual users _DONE_
 - Use meteor backend _DONE_
 - Auth _DONE_
-- Use material components for frontend _IN PROGRESS_
+- Use material components for frontend _DONE_
 - Write up assessment of Meteor and Material and put forward views on whether we should rewrite Isometrica _NOT DONE_
 
 ### Other
