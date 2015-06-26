@@ -28,7 +28,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
             templateUrl: 'client/viewUser.ng.html',
             resolve: {
                 user: ['$stateParams', '$meteor', function($stateParams, $meteor) {
-                    var user = $meteor.object(Meteor.users, $stateParams.userId);
+                    var user = $meteor.object(Meteor.users, $stateParams.userId, false);
                     return user;
                 }]
             },
