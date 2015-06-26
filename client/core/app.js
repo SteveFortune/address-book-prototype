@@ -30,7 +30,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
         .state('login', {
             url: '/login',
             templateUrl: 'client/login.ng.html',
-            controller: 'LoginCtrl',
+            controller: 'LoginCtrl'
         })
         .state('addressbook', {
             url: '/addressbook',
