@@ -24,7 +24,7 @@ Testing out these candidate technologies for Isometrica.
 ### Reading List
 
 - Meteor Documentation _DONE_
-- Material Guide _IN PROGRESS_
-- Angular Material Guide _IN PROGRESS_
+- Material Guide _DONE (Browsed)_
+- Angular Material Guide _DONE (Browsed)_
 - Angular Meteor Documentation _DONE_
 - Angular Meteor lecture _DONE_
