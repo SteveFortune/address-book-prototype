@@ -16,12 +16,31 @@ if (Meteor.isCordova) {
     angular.element(document).ready(boot);
 }
 
+app.run(['$rootScope', '$state', function($rootScope, $state) {
+    $rootScope.$on('$stateChangeError', function(event, next, previous, error) {
+        if (error === "AUTH_REQUIRED") {
+            event.preventDefault();
+            $state.go('login');
+        }
+    });
+}]);
+
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
+        .state('login', {
+            url: '/login',
+            templateUrl: 'client/login.ng.html',
+            controller: 'LoginCtrl',
+        })
         .state('addressbook', {
             url: '/addressbook',
             templateUrl: 'client/addressBook.ng.html',
-            controller: 'AddressBookCtrl'
+            controller: 'AddressBookCtrl',
+            resolve: {
+                "identity": ["$meteor", function($meteor){
+                  return $meteor.requireUser();
+                }]
+            }
         })
         .state('addressbook.user', {
             url: '/:userId',
@@ -36,6 +55,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
         });
     $urlRouterProvider.otherwise('/addressbook');
 }]);
+
+app.controller('LoginCtrl', [function() {}]);
 
 app.controller('UserCtrl', ['$mdDialog', '$scope', '$meteor', 'user', function($mdDialog, $scope, $meteor, user) {
 

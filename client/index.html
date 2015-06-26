@@ -4,5 +4,10 @@
 </head>
 
 <body layout="column">
+    <md-toolbar layout-align="start center" layout-padding>
+        <div class="navbar-right navbar-text">
+          <meteor-include src="loginButtons"></meteor-include>
+        </div>
+    </md-toolbar>
     <div ui-view class="container-fluid"></div>
 </body>
