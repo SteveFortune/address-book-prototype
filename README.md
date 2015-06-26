@@ -9,9 +9,8 @@ Testing out these candidate technologies for Isometrica.
 - Edit users _DONE_
 - List and search users _DONE_
 - View individual users _DONE_
-- Use meteor backend _IN PROGRESS_
-    - Authentication ?
-    - Authorization ?
+- Use meteor backend _DONE_
+- Auth _DONE_
 - Use material components for frontend _IN PROGRESS_
 - Write up assessment of Meteor and Material and put forward views on whether we should rewrite Isometrica _NOT DONE_
 
