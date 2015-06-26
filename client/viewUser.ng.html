@@ -26,7 +26,7 @@
             Type or Role
         </md-header>
         <md-subheader>
-            {{ user.role }}
+            {{ user.role || 'No Role' }}
         </md-subheader>
         <md-divider></md-divider>
 
@@ -35,6 +35,14 @@
         </md-header>
         <md-subheader>
             {{ user.email }}
+        </md-subheader>
+        <md-divider></md-divider>
+
+        <md-header>
+            Address
+        </md-header>
+        <md-subheader>
+            {{ user.address || 'No Address' }}
         </md-subheader>
         <md-divider></md-divider>
 

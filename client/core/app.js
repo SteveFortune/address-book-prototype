@@ -39,13 +39,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
 
 app.controller('UserCtrl', ['$mdDialog', '$scope', '$meteor', 'user', function($mdDialog, $scope, $meteor, user) {
 
-    var users;
-    $scope.isNew = !user;
+    var users = $meteor.collection(Meteor.users);
     $scope.user = user ? angular.copy(user) : {};
-
-    if (!$scope.isNew) {
-        users = $meteor.collection(Meteor.users);
-    }
 
     $scope.edit = function() {
         $mdDialog.show({

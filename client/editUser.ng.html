@@ -27,11 +27,15 @@
             </md-input-container>
             <md-input-container>
                 <label>Type or Role</label>
-                <input type="text" ng-model="user.roleOrType" required="true"/>
+                <input type="text" ng-model="user.roleOrType"/>
             </md-input-container>
             <md-input-container>
                 <label>Email</label>
                 <input type="email" ng-model="user.email" required="true"/>
+            </md-input-container>
+            <md-input-container>
+                <label>Address</label>
+                <input type="email" ng-model="user.address"/>
             </md-input-container>
 
             <md-header>
@@ -40,21 +44,23 @@
                     Add
                 </md-button>
             </md-header>
-            <md-subheader ng-if="!user.phoneNumbers.length">
-                <i>No phone numbers</i>
-            </md-subheader>
+            <div ng-if="!user.phoneNumbers.length">
+                <md-subheader>
+                    <i>No phone numbers</i>
+                </md-subheader>
+            </div>
 
             <md-grid-list md-cols="2" md-row-height="50px">
                 <md-grid-tile md-colspan="1" ng-repeat-start="phoneNumber in user.phoneNumbers">
                     <md-input-container>
                         <label>Number</label>
-                        <input type="text" ng-model="phoneNumber.number" require="true"/>
+                        <input type="text" ng-model="phoneNumber.number" required="true"/>
                     </md-input-container>
                 </md-grid-tile>
                 <md-grid-tile md-colspan="1">
                     <md-input-container>
                         <label>Type</label>
-                        <input type="text" ng-model="phoneNumber.type" require="true"/>
+                        <input type="text" ng-model="phoneNumber.type" required="true"/>
                     </md-input-container>
                 </md-grid-tile>
                 <span ng-repeat-end></span>
@@ -66,11 +72,11 @@
 
             <md-input-container>
                 <label>Password</label>
-                <input type="password" ng-model="user.password" required="true"/>
+                <input type="password" ng-model="user.password"/>
             </md-input-container>
             <md-input-container>
                 <label>Role</label>
-                <input type="password" ng-model="user.role" required="true"/>
+                <input type="password" ng-model="user.role"/>
             </md-input-container>
 
             <md-header>
@@ -79,21 +85,23 @@
                     Add
                 </md-button>
             </md-header>
-            <md-subheader ng-if="!user.callTree.length">
-                <i>No call tree contacts</i>
-            </md-subheader>
+            <div ng-if="!user.callTree.length">
+                <md-subheader>
+                    <i>No call tree contacts</i>
+                </md-subheader>
+            </div>
 
             <md-grid-list md-cols="2" md-row-height="50px">
                 <md-grid-tile md-colspan="1" ng-repeat-start="contact in user.callTree">
                     <md-input-container>
                         <label>Name</label>
-                        <input type="text" ng-model="contact.name" require="true"/>
+                        <input type="text" ng-model="contact.name" required="true"/>
                     </md-input-container>
                 </md-grid-tile>
                 <md-grid-tile md-colspan="1">
                     <md-input-container>
                         <label>Number</label>
-                        <input type="text" ng-model="contact.number" require="true"/>
+                        <input type="text" ng-model="contact.number" required="true"/>
                     </md-input-container>
                 </md-grid-tile>
                 <span ng-repeat-end></span>
@@ -102,5 +110,5 @@
         </form>
 
     </md-dialog-content>
-    
+
 </md-dialog>
