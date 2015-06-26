@@ -4,7 +4,7 @@ Testing out these candidate technologies for Isometrica.
 
 ### Objectives
 
-- Simplified 'address book' version
+- Simplified 'address book' version _DONE_
 - Create users _DONE_
 - Edit users _DONE_
 - List and search users _DONE_
