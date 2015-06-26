@@ -27,10 +27,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
             url: '/:userId',
             templateUrl: 'client/viewUser.ng.html',
             resolve: {
-                user: ['$stateParams', function($stateParams) {
-                    return Meteor.users.find({
-                        _id: $stateParams.userId
-                    });
+                user: ['$stateParams', '$meteor', function($stateParams, $meteor) {
+                    var user = $meteor.object(Meteor.users, $stateParams.userId);
+                    return user.getRawObject();
                 }]
             },
             controller: 'UserCtrl'
@@ -40,8 +39,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
 
 app.controller('UserCtrl', ['$mdDialog', '$scope', '$meteor', 'user', function($mdDialog, $scope, $meteor, user) {
 
-    var users = $meteor.collection(Meteor.users);
+    var users;
+    $scope.isNew = !user;
     $scope.user = user ? angular.copy(user) : {};
+
+    if (!$scope.isNew) {
+        users = $meteor.collection(Meteor.users);
+    }
 
     $scope.edit = function() {
         $mdDialog.show({
