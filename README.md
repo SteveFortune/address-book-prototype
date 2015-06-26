@@ -10,8 +10,7 @@ Testing out these candidate technologies for Isometrica.
 - List and search users _IN PROGRESS_
     - Search functionality
     - Pagination
-- View individual users _IN PROGRESS_
-    - Doesn't load data correctly
+- View individual users _DONE_
 - Use meteor backend _IN PROGRESS_
     - Authentication ?
     - Authorization ?
