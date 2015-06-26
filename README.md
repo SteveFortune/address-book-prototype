@@ -5,13 +5,18 @@ Testing out these candidate technologies for Isometrica.
 ### Objectives
 
 - Simplified 'address book' version
-- Create users
-- Edit users
-- List and search users
-- View individual users
-- Use meteor backend
-- Use material components for frontend
-- Write up assessment of Meteor and Material and put forward views on whether we should rewrite Isometrica
+- Create users _DONE_
+- Edit users _DONE_
+- List and search users _IN PROGRESS_
+    - Search functionality
+    - Pagination
+- View individual users _IN PROGRESS_
+    - Doesn't load data correctly
+- Use meteor backend _IN PROGRESS_
+    - Authentication ?
+    - Authorization ?
+- Use material components for frontend _IN PROGRESS_
+- Write up assessment of Meteor and Material and put forward views on whether we should rewrite Isometrica _NOT DONE_
 
 ### Other
 
